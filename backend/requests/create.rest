@@ -1,0 +1,23 @@
+POST http://localhost:3000/ HTTP/1.1
+content-type: application/json
+
+{
+    "id": "a1",
+    "name": "hemoglobiini",
+    "unit": "g/l",
+    "upperBound": 167,
+    "lowerBound": 130
+}
+
+###
+
+POST http://localhost:3000/ HTTP/1.1
+content-type: application/json
+
+{
+    "id": "a2",
+    "name": "LDL-kolesteroli",
+    "unit": "mmol/l",
+    "upperBound": 3,
+    "lowerBound": 0
+}

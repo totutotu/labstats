@@ -1,0 +1,37 @@
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+  - '8'
+before_install:
+  - npm install -g npm
+jobs:
+  include:
+    - stage: tests
+      name: Frontend tests
+      cache:
+        directories:
+          - frontend/node_modules
+      install:
+        - cd frontend
+        - npm install
+      script:
+        - npm run lint
+    - stage: tests
+      name: Backend tests
+      cache:
+        directories:
+          - backend/node_modules
+      before_install:
+        - docker-compose up -d
+      install:
+        - cd backend
+        - npm install
+      script:
+        - npm run lint
+      env:
+        - DB_URI=mongodb://localhost:27017
+        - DB_USER=user
+        - DB_PASS=pass
+services:
+ - docker

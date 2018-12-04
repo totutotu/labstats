@@ -1,0 +1,34 @@
+{
+  "name": "labstats-backend",
+  "version": "1.0.0",
+  "description": "Terveystalo code challenge",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon src/index.js NODE_ENV=Development",
+    "lint": "eslint --parser babel-eslint src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/totutotu/labstats.git"
+  },
+  "author": "Tuomo Torppa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/totutotu/labstats/issues"
+  },
+  "homepage": "https://github.com/totutotu/labstats#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.14"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "dotenv": "^6.1.0",
+    "eslint": "^5.9.0",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.7"
+  }
+}
