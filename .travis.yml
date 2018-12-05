@@ -5,6 +5,8 @@ notifications:
 language: node_js
 node_js:
   - '8'
+services:
+ - docker
 before_install:
   - npm install -g npm
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
@@ -38,6 +40,8 @@ jobs:
         - DB_PASS=pass
 deploy:
   provider: script
-  script: bash heroku_push.sh
-services:
- - docker
+  script:
+    echo "$HEROKU_TOKEN" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+    docker build -t totutotu/labstats .
+    docker push registry.heroku.com/$HEROKU_APP_NAME/web
+    heroku container:release web --app $HEROKU_APP_NAME
