@@ -38,10 +38,9 @@ jobs:
         - DB_URI=mongodb://localhost:27017
         - DB_USER=user
         - DB_PASS=pass
-deploy:
-  provider: script
-  script:
-    echo "$HEROKU_TOKEN" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
-    docker build -t totutotu/labstats .
-    docker push registry.heroku.com/$HEROKU_APP_NAME/web
-    heroku container:release web --app $HEROKU_APP_NAME
+    - stage: deploy
+        script:
+          echo "$HEROKU_TOKEN" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+          docker build -t totutotu/labstats .
+          docker push registry.heroku.com/$HEROKU_APP_NAME/web
+          heroku container:release web --app $HEROKU_APP_NAME
