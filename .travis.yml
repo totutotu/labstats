@@ -38,6 +38,6 @@ jobs:
         - DB_PASS=pass
 deploy:
   provider: script
-  script: bash heroku_push
+  script: bash heroku_push.
 services:
  - docker
