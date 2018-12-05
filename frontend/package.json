@@ -4,7 +4,8 @@
   "description": "Terveystalo code challenge",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
+    "start": "serve -s dist",
+    "dev": "webpack-dev-server --mode development --open",
     "lint": "eslint ./src --ext .js",
     "build": "webpack --mode production"
   },
@@ -38,6 +39,7 @@
   },
   "dependencies": {
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "serve": "^10.1.1"
   }
 }
