@@ -23,11 +23,15 @@
         "props": false
       }
     ],
+    "no-restricted-globals": "off",
+    "arrow-body-style": "off",
     "import/no-unresolved": 2,
     "react/jsx-no-bind": 2,
+    "react/destructuring-assignment": "off",
     "react/no-did-mount-set-state": 0,
     "react/prefer-stateless-function": 2,
     "react/no-typos": 0,
+    "react/prop-types": "off",
     "react/jsx-filename-extension": [
       1,
       {

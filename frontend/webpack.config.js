@@ -1,29 +1,37 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 
-const htmlPlugin = new HtmlWebPackPlugin({
-  template: './src/index.html',
-  filename: './index.html'
-})
 
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
+module.exports = (env, argv) => {
+  const { mode } = argv
+
+  const htmlPlugin = new HtmlWebPackPlugin({
+    template: './src/index.html',
+    filename: './index.html',
+    title: 'Hot Module Replacement'
+  })
+  const additionalPlugins = mode === 'production'
+    ? null
+    : [new webpack.HotModuleReplacementPlugin()] // Enable hot module replacement
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader'
+          }
         }
-      }
-    ]
-  },
-  devServer: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        pathRewrite: { '^/api': '' }
-      }
-    }
-  },
-  plugins: [htmlPlugin]
+      ]
+    },
+    devServer: {
+      hot: true,
+      proxy: {
+        '/api': 'http://localhost:3000'
+      },
+      historyApiFallback: true
+    },
+    plugins: [htmlPlugin, ...additionalPlugins]
+  }
 }
