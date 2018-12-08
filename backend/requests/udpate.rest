@@ -1,0 +1,12 @@
+PUT  http://localhost:3000/sfgsg HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "a1",
+    "name": "Aaaaaaaaa",
+    "unit": "g/l",
+    "upperBound": 167,
+    "lowerBound": 134
+}
+
+# To use insert a valid existing ID in your DB
