@@ -11,7 +11,7 @@ module.exports = (env, argv) => {
     title: 'Hot Module Replacement'
   })
   const additionalPlugins = mode === 'production'
-    ? null
+    ? []
     : [new webpack.HotModuleReplacementPlugin()] // Enable hot module replacement
   return {
     module: {
