@@ -8,6 +8,5 @@ RUN chown --recursive appuser /app
 
 USER appuser
 RUN npm install
-RUN npm run build
 
 CMD ["npm", "start"]
