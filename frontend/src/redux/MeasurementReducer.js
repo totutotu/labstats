@@ -6,6 +6,12 @@ const getMeasurementsAttempt = () => ({
   type: 'GET_MEASUREMENTS_ATTEMPT'
 })
 
+const editMeasurementAttempt = measurement => ({
+  type: 'EDIT_MEASUREMENTS_ATTEMPT',
+  payload: {
+    ...measurement
+  }
+})
 const createMeasurementAttempt = measurement => ({
   type: 'CREATE_MEASUREMENTS_ATTEMPT',
   payload: {
@@ -30,6 +36,21 @@ export const getMeasurements = () => {
       }))
       .catch(e => dispatch({
         type: 'GET_MEASUREMENTS_FAILED',
+        message: e
+      }))
+  }
+}
+
+export const edittMeasurement = measurement => {
+  return dispatch => {
+    dispatch(editMeasurementAttempt(measurement))
+    axios.put(`${ROOT_URL}/${measurement._id}`, measurement)
+      .then(response => dispatch({
+        type: 'EDIT_MEASUREMENTS_SUCCESS',
+        data: response.data
+      }))
+      .catch(e => dispatch({
+        type: 'EDIT_MEASUREMENTS_FAILED',
         message: e
       }))
   }
@@ -119,6 +140,22 @@ const reducer = (state = { data: [] }, action) => {
         pending: false
       }
     case 'DELETE_MEASUREMENTS_FAILED':
+      return {
+        ...state,
+        pending: false,
+        error: action.message
+      }
+    case 'EDIT_MEASUREMENTS_ATTEMPT':
+      return {
+        ...state,
+        pending: true
+      }
+    case 'EDIT_MEASUREMENTS_SUCCESS':
+      return {
+        data: [...state.data].filter(m => m._id !== action.data._id).push(action.data),
+        pending: false
+      }
+    case 'EDIT_MEASUREMENTS_FAILED':
       return {
         ...state,
         pending: false,

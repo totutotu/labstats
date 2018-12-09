@@ -16,7 +16,11 @@ class Measurements extends React.Component {
   render() {
     const { measurements } = this.props
     if (measurements.data.length > 0) {
-      return <MeasurementTable data={measurements.data} deleteMeasurement={this.deleteMeasurement} />
+      return (
+        <MeasurementTable
+          data={measurements.data}
+          deleteMeasurement={this.deleteMeasurement}
+        />)
     }
     return (
       <h1>No measurements in DB</h1>
