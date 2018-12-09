@@ -7,9 +7,16 @@ const getMeasurementsAttempt = () => ({
 })
 
 const createMeasurementAttempt = measurement => ({
-  type: 'GET_MEASUREMENTS_ATTEMPT',
+  type: 'CREATE_MEASUREMENTS_ATTEMPT',
   payload: {
     ...measurement
+  }
+})
+
+const deleteMeasurementAttempt = measurementId => ({
+  type: 'DELETE_MEASUREMENTS_ATTEMPT',
+  payload: {
+    measurementId
   }
 })
 
@@ -38,6 +45,21 @@ export const createMeasurement = measurement => {
       }))
       .catch(e => dispatch({
         type: 'CREATE_MEASUREMENTS_FAILED',
+        message: e
+      }))
+  }
+}
+
+export const deleteMeasurement = measurementId => {
+  return dispatch => {
+    dispatch(deleteMeasurementAttempt(measurementId))
+    axios.delete(`${ROOT_URL}/${measurementId}`)
+      .then(response => dispatch({
+        type: 'DELETE_MEASUREMENTS_SUCCESS',
+        data: response.data
+      }))
+      .catch(e => dispatch({
+        type: 'DELETE_MEASUREMENTS_FAILED',
         message: e
       }))
   }
@@ -81,6 +103,22 @@ const reducer = (state = { data: [] }, action) => {
         pending: false
       }
     case 'CREATE_MEASUREMENTS_FAILED':
+      return {
+        ...state,
+        pending: false,
+        error: action.message
+      }
+    case 'DELETE_MEASUREMENTS_ATTEMPT':
+      return {
+        ...state,
+        pending: true
+      }
+    case 'DELETE_MEASUREMENTS_SUCCESS':
+      return {
+        data: [...state.data].filter(m => m._id !== action.data),
+        pending: false
+      }
+    case 'DELETE_MEASUREMENTS_FAILED':
       return {
         ...state,
         pending: false,

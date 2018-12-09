@@ -2,6 +2,7 @@ const Router = require('express')
 const router = Router()
 const Measurement = require('./services/Measurement')
 
+
 router.get('/', async (req, res) => {
   const aa = await Measurement.findAll()
   res.send(aa)
@@ -9,18 +10,19 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { id, name, unit, upperBound, lowerBound } = req.body
+  console.log(id, name, unit, upperBound, lowerBound)
   try {
     const me = await Measurement.create(id, name, unit, upperBound, lowerBound)
-    res.send(201, me)
+    res.status(201).send(me)
   } catch (e) {
-    res.send(400, e.message)
+    res.status(400).send(e.message)
   }
 })
 
 router.delete('/:id', async (req, res) => {
-  const { id } = req.headers
-  const me = await Measurement.remove(id)
-  res.send(me)
+  const { id } = req.params
+  await Measurement.remove(id)
+  res.status(200).send(id)
 })
 
 router.put('/:id', async (req, res) => {

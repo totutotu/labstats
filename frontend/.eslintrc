@@ -24,6 +24,7 @@
       }
     ],
     "no-restricted-globals": "off",
+    "no-underscore-dangle": "off",
     "arrow-body-style": "off",
     "import/no-unresolved": 2,
     "react/jsx-no-bind": 2,

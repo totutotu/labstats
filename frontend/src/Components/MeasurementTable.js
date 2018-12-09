@@ -15,7 +15,7 @@ import EditIcon from '@material-ui/icons/Edit'
 
 const headers = ['Name', 'Unit', 'Upper bound', 'Lower bound', 'Identifier', 'Edit', 'Remove']
 
-const MeasurementTable = ({ data }) => (
+const MeasurementTable = ({ data, deleteMeasurement }) => (
   <div>
     <Typography variant="h2" align="center" style={{ marginTop: '30px' }}>Measurements</Typography>
     <Paper align="center" style={{ marginTop: '30px', marginLeft: '20px', marginRight: '20px' }}>
@@ -36,7 +36,7 @@ const MeasurementTable = ({ data }) => (
               <TableCell>{row.bounds.lower}</TableCell>
               <TableCell>{row.id}</TableCell>
               <TableCell><Fab size="small"><EditIcon /></Fab></TableCell>
-              <TableCell><Fab size="small" color="secondary"><DeleteForeverIcon style={{ color: 'black' }} /></Fab></TableCell>
+              <TableCell><Fab size="small" color="secondary"><DeleteForeverIcon onClick={() => deleteMeasurement(row._id)} style={{ color: 'black' }} /></Fab></TableCell>
             </TableRow>
           ))
           }
