@@ -41,6 +41,7 @@ jobs:
     - stage: build
       script:
         - cd frontend
+        - npm install
         - npm run build
     - stage: deploy
       script:
