@@ -4,7 +4,7 @@
   "description": "Terveystalo code challenge",
   "main": "index.js",
   "scripts": {
-    "start": "serve -s ./dist & node src/index.js",
+    "start": "node src/index.js & serve -s ./dist",
     "dev": "nodemon src/index.js NODE_ENV=Development",
     "lint": "eslint --parser babel-eslint src",
     "test": "echo \"Error: no test specified\" && exit 1"
