@@ -43,10 +43,10 @@ jobs:
         - cd frontend
         - npm install
         - npm run build
-         - >
-            printf "FROM node:8\nRUN useradd --create-home --home-dir /app appuser\nCOPY . /app\nWORKDIR /app\nRUN chown --recursive appuser /app\nUSER appuser\nRUN npm install\nCMD [\"npm\", \"start\", \"DB_URI=$DB_URI\", \"DB_PASSWORD=$DB_PASSWORD\", \"DB_USER=$DB_USER\"]\n" >> Dockerfile
         - cp -r dist ../backend
         - cd ../backend
+        - >
+          printf "FROM node:8\nRUN useradd --create-home --home-dir /app appuser\nCOPY . /app\nWORKDIR /app\nRUN chown --recursive appuser /app\nUSER appuser\nRUN npm install\nCMD [\"npm\", \"start\", \"DB_URI=$DB_URI\", \"DB_PASSWORD=$DB_PASSWORD\", \"DB_USER=$DB_USER\"]\n" >> Dockerfile
         - echo $HEROKU_TOKEN | docker login -u $HEROKU_USERNAME --password-stdin registry.heroku.com
         - docker build -t totutotu/labstats .
         - docker tag totutotu/labstats registry.heroku.com/$HEROKU_APP_NAME/web
