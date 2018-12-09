@@ -43,7 +43,7 @@ jobs:
         - cd frontend
         - npm install
         - npm run build
-        - cp -r dist ../backend
+        - cp -r dist ../backend/src
         - cd ../backend
         - echo $HEROKU_TOKEN | docker login -u $HEROKU_USERNAME --password-stdin registry.heroku.com
         - docker build -t totutotu/labstats .

@@ -15,7 +15,6 @@ class CreateMeasurement extends React.Component {
   handleChange = ({ target }) => {
     const { id, value } = target
     this.setState({ [id]: value })
-    console.log(this.state)
   }
 
   create = () => {
