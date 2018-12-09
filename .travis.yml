@@ -39,11 +39,11 @@ jobs:
         - DB_USER=user
         - DB_PASS=pass
     - stage: build
-        script:
+      script:
         - cd frontend
         - npm run build
     - stage: deploy
-        script:
+      script:
         - echo $HEROKU_TOKEN | docker login -u $HEROKU_USERNAME --password-stdin registry.heroku.com
         - docker build -t totutotu/labstats .
         - docker tag totutotu/labstats registry.heroku.com/$HEROKU_APP_NAME/web
