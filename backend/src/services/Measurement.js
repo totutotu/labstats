@@ -1,5 +1,4 @@
 const Measurement = require('../models/Measurement')
-
 const findAll = async () => {
   return Measurement.find({})
 }
@@ -12,8 +11,14 @@ const remove = async (id) => {
   return await Measurement.deleteOne({ _id: id })
 }
 
-const update = async (id, unit, name, upperBound, lowerBound) => {
-  return await Measurement.updateOne({ _id: id }, { unit, name, upperBound, lowerBound })
+const update = async (id, unit, name, upperBound, lowerBound, identifier) => {
+  return await Measurement.updateOne({ _id: id}, {
+    unit,
+    name,
+    bounds:
+      { upper: upperBound, lower: lowerBound },
+    id: identifier 
+  })
 }
 
 

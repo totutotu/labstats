@@ -12,6 +12,7 @@ import Fab from '@material-ui/core/Fab'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import EditIcon from '@material-ui/icons/Edit'
 
+import history from '../history'
 
 const headers = ['Name', 'Unit', 'Upper bound', 'Lower bound', 'Identifier', 'Edit', 'Remove']
 
@@ -35,7 +36,7 @@ const MeasurementTable = ({ data, deleteMeasurement }) => (
               <TableCell>{row.bounds.upper}</TableCell>
               <TableCell>{row.bounds.lower}</TableCell>
               <TableCell>{row.id}</TableCell>
-              <TableCell><Fab size="small"><EditIcon /></Fab></TableCell>
+              <TableCell><Fab size="small"><EditIcon onClick={() => history.push(`/edit/${row._id}`)} /></Fab></TableCell>
               <TableCell><Fab size="small" color="secondary"><DeleteForeverIcon onClick={() => deleteMeasurement(row._id)} style={{ color: 'black' }} /></Fab></TableCell>
             </TableRow>
           ))

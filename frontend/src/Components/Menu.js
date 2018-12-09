@@ -2,6 +2,7 @@ import React from 'react'
 import Menu from '@material-ui/core/Menu'
 import MenuIcon from '@material-ui/icons/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import history from '../history'
 
 class SimpleMenu extends React.Component {
   state = {
@@ -30,9 +31,9 @@ class SimpleMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose}>Show all</MenuItem>
-          <MenuItem onClick={this.handleClose}>Uploaddsa new stats</MenuItem>
-          <MenuItem onClick={this.handleClose}>Show Tuomo some appreciation</MenuItem>
+          <MenuItem onClick={() => history.push('/')}>Show all</MenuItem>
+          <MenuItem onClick={() => history.push('/new')}>Uploaddsa new stats</MenuItem>
+          <MenuItem onClick={() => history.push('/edit')}>Show Tuomo some appreciation</MenuItem>
         </Menu>
       </div>
     )

@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getMeasurements, deleteMeasurement } from '../redux/MeasurementReducer'
+import { getMeasurements, deleteMeasurement, editMeasurement } from '../redux/MeasurementReducer'
 import MeasurementTable from './MeasurementTable'
-
 
 class Measurements extends React.Component {
   componentWillMount() {
@@ -34,7 +33,8 @@ const mapStateToProps = ({ measurements }) => ({
 
 const mapDispatchToProps = {
   getMeasurements,
-  deleteMeasurement
+  deleteMeasurement,
+  editMeasurement
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Measurements)

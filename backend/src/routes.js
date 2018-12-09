@@ -26,9 +26,11 @@ router.delete('/:id', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
-  const { id } = req.headers
+  const { id } = req.params
   const { name, unit, upperBound, lowerBound } = req.body
-  const me = await Measurement.update(id, name, unit, upperBound, lowerBound)
+  const identifier = req.body.id
+  console.log(upperBound)
+  const me = await Measurement.update(id, unit, name, Number(upperBound), Number(lowerBound), identifier)
   res.send(me)
 })
 

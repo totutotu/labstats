@@ -41,7 +41,7 @@ export const getMeasurements = () => {
   }
 }
 
-export const edittMeasurement = measurement => {
+export const editMeasurement = measurement => {
   return dispatch => {
     dispatch(editMeasurementAttempt(measurement))
     axios.put(`${ROOT_URL}/${measurement._id}`, measurement)
