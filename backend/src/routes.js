@@ -1,16 +1,24 @@
 const Router = require('express')
 const router = Router()
 const Measurement = require('./services/Measurement')
-
+const { validationResult } = require('express-validator/check')
+const { validateMeasurement } = require('./validators')
 
 router.get('/', async (req, res) => {
-  const aa = await Measurement.findAll()
-  res.send(aa)
+  console.log(validateMeasurement)
+  const all = await Measurement.findAll()
+  res.status(200).send(all)
 })
 
-router.post('/', async (req, res) => {
+router.post('/', validateMeasurement, async (req, res) => {
+  console.log(req.body)
+
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() })
+  }
   const { id, name, unit, upperBound, lowerBound } = req.body
-  console.log(id, name, unit, upperBound, lowerBound)
+
   try {
     const me = await Measurement.create(id, name, unit, upperBound, lowerBound)
     res.status(201).send(me)
@@ -25,12 +33,16 @@ router.delete('/:id', async (req, res) => {
   res.status(200).send(id)
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', validateMeasurement, async (req, res) => {
+  console.log(req.body)
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() })
+  }
   const { id } = req.params
   const { name, unit, upperBound, lowerBound } = req.body
   const identifier = req.body.id
-  console.log(upperBound)
-  const me = await Measurement.update(id, unit, name, Number(upperBound), Number(lowerBound), identifier)
+  const me = await Measurement.update(id, unit, name, upperBound, lowerBound, identifier)
   res.send(me)
 })
 

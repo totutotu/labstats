@@ -8,6 +8,7 @@ import App from './Components/App'
 import combinedReducers from './redux/index'
 import history from './history'
 
+
 // eslint-disable-next-line
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(combinedReducers, composeEnhancers(applyMiddleware(thunk)))

@@ -32,8 +32,7 @@ class SimpleMenu extends React.Component {
           onClose={this.handleClose}
         >
           <MenuItem onClick={() => history.push('/')}>Show all</MenuItem>
-          <MenuItem onClick={() => history.push('/new')}>Uploaddsa new stats</MenuItem>
-          <MenuItem onClick={() => history.push('/edit')}>Show Tuomo some appreciation</MenuItem>
+          <MenuItem onClick={() => history.push('/new')}>Upload new stats</MenuItem>
         </Menu>
       </div>
     )
