@@ -19,8 +19,8 @@ const headers = ['Name', 'Unit', 'Upper bound', 'Lower bound', 'Identifier', 'Ed
 const MeasurementTable = ({ data, deleteMeasurement }) => (
   <div>
     <Typography variant="h2" align="center" style={{ marginTop: '30px' }}>Measurements</Typography>
-    <Paper align="center" style={{ marginTop: '30px', marginLeft: '20px', marginRight: '20px' }}>
-      <Table>
+    <Paper align="center" style={{ overflowX: 'auto', width: '100%', marginTop: '30px', marginLeft: '20px', marginRight: '20px' }}>
+      <Table style={{ minWidth: 700 }}>
         <TableHead>
           <TableRow>
             {headers.map(header => <TableCell key={header}>{header}</TableCell>)}
