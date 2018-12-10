@@ -27,7 +27,7 @@ jobs:
       env:
         - TEST_DB_URI=mongodb://127.0.0.1:27017
         - TEST_DB_USER=user
-        - TEST_DB_PASS=pass
+        - TEST_DB_PASSWORD=pass
       cache:
         directories:
           - backend/node_modules
