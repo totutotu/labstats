@@ -34,6 +34,7 @@ jobs:
         - npm install
       script:
         - npm run lint
+        - npm test
       env:
         - DB_URI=mongodb://localhost:27017
         - DB_USER=user
