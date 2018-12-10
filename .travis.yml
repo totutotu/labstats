@@ -37,9 +37,9 @@ jobs:
         - npm test
       env:
         global:
-          - DB_URI=mongodb://localhost:27017
-          - DB_USER=user
-          - DB_PASS=pass
+          - TEST_DB_URI=mongodb://localhost:27017
+          - TEST_DB_USER=user
+          - TEST_DB_PASS=pass
     - stage: build & deploy
       script:
         - cd frontend
