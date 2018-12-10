@@ -24,6 +24,11 @@ jobs:
         - npm run lint
     - stage: tests
       name: Backend tests
+      env:
+        global:
+          - TEST_DB_URI=mongodb://localhost:27017
+          - TEST_DB_USER=user
+          - TEST_DB_PASS=pass
       cache:
         directories:
           - backend/node_modules
@@ -35,11 +40,6 @@ jobs:
       script:
         - npm run lint
         - npm test
-      env:
-        global:
-          - TEST_DB_URI=mongodb://localhost:27017
-          - TEST_DB_USER=user
-          - TEST_DB_PASS=pass
     - stage: build & deploy
       script:
         - cd frontend
