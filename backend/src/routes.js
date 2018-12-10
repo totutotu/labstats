@@ -17,7 +17,7 @@ router.post('/', validateMeasurement, async (req, res) => {
   const { id, name, unit, upperBound, lowerBound } = req.body
 
   try {
-    const me = await Measurement.create(id, name, unit, upperBound, lowerBound)
+    const me = await Measurement.create(id, unit, name, upperBound, lowerBound)
     res.status(201).send(me)
   } catch (e) {
     res.status(400).send(e.message)
@@ -39,7 +39,7 @@ router.put('/:id', validateMeasurement, async (req, res) => {
   const { name, unit, upperBound, lowerBound } = req.body
   const identifier = req.body.id
   const me = await Measurement.update(id, unit, name, upperBound, lowerBound, identifier)
-  res.send(me)
+  res.status(200).send(me)
 })
 
 module.exports = router

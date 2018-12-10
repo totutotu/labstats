@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "dev": " NODE_ENV=development nodemon src/index.js",
     "lint": "eslint --parser babel-eslint src",
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest "
   },
   "repository": {
     "type": "git",
