@@ -25,7 +25,7 @@ jobs:
     - stage: tests
       name: Backend tests
       env:
-        - TEST_DB_URI=mongodb://localhost:27017
+        - TEST_DB_URI=mongodb://127.0.0.1:27017
         - TEST_DB_USER=user
         - TEST_DB_PASS=pass
       cache:
