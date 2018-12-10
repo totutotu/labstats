@@ -36,9 +36,10 @@ jobs:
         - npm run lint
         - npm test
       env:
-        - DB_URI=mongodb://localhost:27017
-        - DB_USER=user
-        - DB_PASS=pass
+        global:
+          - DB_URI=mongodb://localhost:27017
+          - DB_USER=user
+          - DB_PASS=pass
     - stage: build & deploy
       script:
         - cd frontend

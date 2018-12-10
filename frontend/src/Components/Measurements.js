@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import Typography from '@material-ui/core/Typography'
 import { getMeasurements, deleteMeasurement, editMeasurement } from '../redux/MeasurementReducer'
 import MeasurementTable from './MeasurementTable'
 
@@ -16,13 +18,18 @@ class Measurements extends React.Component {
     const { measurements } = this.props
     if (measurements.data.length > 0) {
       return (
-        <MeasurementTable
-          data={measurements.data}
-          deleteMeasurement={this.deleteMeasurement}
-        />)
+        <div>
+          <Typography variant="h2" align="center" style={{ marginTop: '30px' }}>All measurements</Typography>
+          <MeasurementTable
+            data={measurements.data}
+            deleteMeasurement={this.deleteMeasurement}
+          />
+        </div>)
+    } if (measurements.pending) {
+      return <CircularProgress color="secondary" />
     }
     return (
-      <h1>No measurements in DB</h1>
+      <Typography align="center" style={{ marginTop: '30px' }} variant="h3">No measurements in DB</Typography>
     )
   }
 }
