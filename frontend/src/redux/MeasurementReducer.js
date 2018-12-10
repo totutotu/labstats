@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 
 const ROOT_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : 'https://labstats.herokuapp.com/api'
 
@@ -45,10 +46,13 @@ export const editMeasurement = measurement => {
   return dispatch => {
     dispatch(editMeasurementAttempt(measurement))
     axios.put(`${ROOT_URL}/${measurement._id}`, measurement)
-      .then(response => dispatch({
-        type: 'EDIT_MEASUREMENTS_SUCCESS',
-        data: response.data
-      }))
+      .then(response => {
+        dispatch({
+          type: 'EDIT_MEASUREMENTS_SUCCESS',
+          data: response.data
+        })
+        history.push('/')
+      })
       .catch(e => dispatch({
         type: 'EDIT_MEASUREMENTS_FAILED',
         message: e
@@ -60,10 +64,13 @@ export const createMeasurement = measurement => {
   return dispatch => {
     dispatch(createMeasurementAttempt(measurement))
     axios.post(`${ROOT_URL}`, measurement)
-      .then(response => dispatch({
-        type: 'CREATE_MEASUREMENTS_SUCCESS',
-        data: response.data
-      }))
+      .then(response => {
+        dispatch({
+          type: 'CREATE_MEASUREMENTS_SUCCESS',
+          data: response.data
+        })
+        history.push('/')
+      })
       .catch(e => dispatch({
         type: 'CREATE_MEASUREMENTS_FAILED',
         message: e

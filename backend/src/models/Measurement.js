@@ -3,8 +3,7 @@ const { Schema }= mongoose
 
 const MeasurementSchema = new Schema({
   id: {
-    type: String,
-    required: true
+    type: String
   },
   unit: {
     type: String,

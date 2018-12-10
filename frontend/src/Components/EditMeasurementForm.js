@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 
-const EditMeasurementForm = ({ handleChange, edit, initialValues }) => {
+const EditMeasurementForm = ({ handleChange, edit, initialValues, disabled }) => {
   const { name, unit, id, upperBound, lowerBound } = initialValues
   return (
     <div>
@@ -80,7 +80,7 @@ const EditMeasurementForm = ({ handleChange, edit, initialValues }) => {
             />
           </Grid>
         </Grid>
-        <Button onClick={edit} variant="contained" color="secondary" style={{ marginTop: '20px' }}>
+        <Button disabled={disabled()} onClick={edit} variant="contained" color="secondary" style={{ marginTop: '20px' }}>
           Save
         </Button>
       </form>

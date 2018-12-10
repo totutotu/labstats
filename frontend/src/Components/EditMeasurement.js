@@ -15,13 +15,12 @@ class EditMeasurement extends React.Component {
 
   componentDidMount() {
     const measurement = this.props.measurements.data.find(m => m._id === this.state._id)
-
+    console.log(measurement)
     this.setState({
       ...measurement,
       upperBound: measurement.bounds.upper,
       lowerBound: measurement.bounds.lower
     })
-    console.log(this.state)
   }
 
   handleChange = ({ target }) => {
@@ -34,12 +33,18 @@ class EditMeasurement extends React.Component {
     this.props.editMeasurement({ ...this.state, _id })
   }
 
+  disabled = () => {
+    const { name, unit } = this.state
+    return name.length === 0 || unit.length === 0
+  }
+
   render() {
     return (
       <EditMeasurementForm
         handleChange={this.handleChange}
         edit={this.edit}
         initialValues={this.state}
+        disabled={this.disabled}
       />
     )
   }

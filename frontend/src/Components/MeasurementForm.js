@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 
-const MeasurementForm = ({ handleChange, create }) => {
+const MeasurementForm = ({ handleChange, create, disabled }) => {
   return (
     <div>
       <Typography variant="h2" align="center" style={{ marginTop: '30px' }}>Add a new measurement</Typography>
@@ -76,7 +76,7 @@ const MeasurementForm = ({ handleChange, create }) => {
             />
           </Grid>
         </Grid>
-        <Button onClick={create} variant="contained" color="secondary" style={{ marginTop: '20px' }}>
+        <Button disabled={disabled()} onClick={create} variant="contained" color="secondary" style={{ marginTop: '20px' }}>
           Create
         </Button>
       </form>

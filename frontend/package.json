@@ -2,7 +2,6 @@
   "name": "labstats-frontend",
   "version": "1.0.0",
   "description": "Terveystalo code challenge",
-  "main": "index.js",
   "scripts": {
     "start": "serve -s dist",
     "dev": "webpack-dev-server --mode development --hot --inline",

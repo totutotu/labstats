@@ -5,14 +5,11 @@ const { validationResult } = require('express-validator/check')
 const { validateMeasurement } = require('./validators')
 
 router.get('/', async (req, res) => {
-  console.log(validateMeasurement)
   const all = await Measurement.findAll()
   res.status(200).send(all)
 })
 
 router.post('/', validateMeasurement, async (req, res) => {
-  console.log(req.body)
-
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() })

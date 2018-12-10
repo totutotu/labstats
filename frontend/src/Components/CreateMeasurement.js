@@ -12,6 +12,7 @@ class CreateMeasurement extends React.Component {
     id: ''
   }
 
+
   handleChange = ({ target }) => {
     const { id, value } = target
     this.setState({ [id]: value })
@@ -21,11 +22,17 @@ class CreateMeasurement extends React.Component {
     this.props.createMeasurement(this.state)
   }
 
+  disabled = () => {
+    const { name, unit } = this.state
+    return name.length === 0 || unit.length === 0
+  }
+
   render() {
     return (
       <MeasurementForm
         handleChange={this.handleChange}
         create={this.create}
+        disabled={this.disabled}
       />
     )
   }

@@ -13,7 +13,8 @@ class SimpleMenu extends React.Component {
     this.setState({ anchorEl: event.currentTarget })
   }
 
-  handleClose = () => {
+  handleSelect = address => {
+    history.push(address)
     this.setState({ anchorEl: null })
   }
 
@@ -31,8 +32,8 @@ class SimpleMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={() => history.push('/')}>Show all</MenuItem>
-          <MenuItem onClick={() => history.push('/new')}>Upload new stats</MenuItem>
+          <MenuItem onClick={() => this.handleSelect('/')}>Show all</MenuItem>
+          <MenuItem onClick={() => this.handleSelect('/new')}>Upload new stats</MenuItem>
         </Menu>
       </div>
     )
