@@ -15,7 +15,7 @@ const store = createStore(combinedReducers, composeEnhancers(applyMiddleware(thu
 
 const refresh = () => render(
   <Provider store={store}>
-    <Router history={history} basename="http://localhost:8080">
+    <Router history={history}>
       <App />
     </Router>
   </Provider>,
