@@ -1,11 +1,16 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 
 module.exports = (env, argv) => {
   const { mode } = argv
 
+  const cssPlugin = new MiniCssExtractPlugin({
+    filename: '[name].css',
+    chunkFilename: '[name]-[id].css'
+  })
   const htmlPlugin = new HtmlWebPackPlugin({
     template: './src/index.html',
     filename: './index.html',
@@ -24,6 +29,14 @@ module.exports = (env, argv) => {
             loader: 'babel-loader'
           }
         }
+        ,
+        { // Load CSS files
+          test: /\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader'
+          ]
+        }
       ]
     },
     devServer: {
@@ -33,7 +46,10 @@ module.exports = (env, argv) => {
       },
       historyApiFallback: true
     },
-    plugins: [htmlPlugin, ...additionalPlugins],
+    plugins: [htmlPlugin,
+      cssPlugin,
+      ...additionalPlugins
+    ],
     entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),

@@ -37,7 +37,7 @@ export const getMeasurements = () => {
       }))
       .catch(e => dispatch({
         type: 'GET_MEASUREMENTS_FAILED',
-        message: e
+        message: e.response.statusText
       }))
   }
 }
@@ -55,7 +55,7 @@ export const editMeasurement = measurement => {
       })
       .catch(e => dispatch({
         type: 'EDIT_MEASUREMENTS_FAILED',
-        message: e
+        message: e.response.statusText
       }))
   }
 }
@@ -73,7 +73,7 @@ export const createMeasurement = measurement => {
       })
       .catch(e => dispatch({
         type: 'CREATE_MEASUREMENTS_FAILED',
-        message: e
+        message: e.response.statusText
       }))
   }
 }
@@ -88,7 +88,7 @@ export const deleteMeasurement = measurementId => {
       }))
       .catch(e => dispatch({
         type: 'DELETE_MEASUREMENTS_FAILED',
-        message: e
+        message: e.response.statusText
       }))
   }
 }
@@ -102,17 +102,19 @@ export const apiCall = () => ({
   type: 'GET_MEASUREMENTS'
 })
 
-const reducer = (state = { data: [] }, action) => {
+const reducer = (state = { data: [], error: '' }, action) => {
   switch (action.type) {
     case 'GET_MEASUREMENTS_ATTEMPT':
       return {
         ...state,
-        pending: true
+        pending: true,
+        error: ''
       }
     case 'GET_MEASUREMENTS_SUCCESS':
       return {
         data: action.data,
-        pending: false
+        pending: false,
+        error: ''
       }
     case 'GET_MEASUREMENTS_FAILED':
       return {
@@ -123,12 +125,14 @@ const reducer = (state = { data: [] }, action) => {
     case 'CREATE_MEASUREMENTS_ATTEMPT':
       return {
         ...state,
-        pending: true
+        pending: true,
+        error: ''
       }
     case 'CREATE_MEASUREMENTS_SUCCESS':
       return {
         data: [...state.data, action.data],
-        pending: false
+        pending: false,
+        error: ''
       }
     case 'CREATE_MEASUREMENTS_FAILED':
       return {
@@ -139,12 +143,14 @@ const reducer = (state = { data: [] }, action) => {
     case 'DELETE_MEASUREMENTS_ATTEMPT':
       return {
         ...state,
-        pending: true
+        pending: true,
+        error: ''
       }
     case 'DELETE_MEASUREMENTS_SUCCESS':
       return {
         data: [...state.data].filter(m => m._id !== action.data),
-        pending: false
+        pending: false,
+        error: ''
       }
     case 'DELETE_MEASUREMENTS_FAILED':
       return {
@@ -155,12 +161,14 @@ const reducer = (state = { data: [] }, action) => {
     case 'EDIT_MEASUREMENTS_ATTEMPT':
       return {
         ...state,
-        pending: true
+        pending: true,
+        error: ''
       }
     case 'EDIT_MEASUREMENTS_SUCCESS':
       return {
         data: [...state.data].filter(m => m._id !== action.data._id).push(action.data),
-        pending: false
+        pending: false,
+        error: ''
       }
     case 'EDIT_MEASUREMENTS_FAILED':
       return {

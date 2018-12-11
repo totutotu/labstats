@@ -49,7 +49,7 @@ describe('Test the root path', () => {
       })
   })
 
-  test('It should create a new one with POST/:id', (done) => {
+  test('It should create a new one with POST /', (done) => {
     request(app).post('/api/').send({ id: 'CL', unit: 'mmol/l', name: 'Kolesteroli', upperBound: 5.0, lowerBound: 0 })
       .then(async (response) => {
         expect(response.statusCode).toBe(201)
@@ -59,6 +59,14 @@ describe('Test the root path', () => {
             expect(response.body.length).toBe(3)
             done()
           })
+      })
+  })
+
+  test('It should return 422 when POSTing with missing values', (done) => {
+    request(app).post('/api/').send({ id: 'CL', name: 'Kolesteroli', upperBound: 5.0, lowerBound: 0 })
+      .then(async (response) => {
+        expect(response.statusCode).toBe(422)
+        done()
       })
   })
 

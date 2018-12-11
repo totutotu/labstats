@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 router.post('/', validateMeasurement, async (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() })
+    return res.status(422).json(errors.array())
   }
   const { id, name, unit, upperBound, lowerBound } = req.body
 
@@ -33,7 +33,7 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', validateMeasurement, async (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() })
+    return res.status(422).json(errors.array())
   }
   const { id } = req.params
   const { name, unit, upperBound, lowerBound } = req.body
