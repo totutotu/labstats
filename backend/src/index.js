@@ -15,11 +15,6 @@ const routes = require('./routes')
 app.use('/api', routes)
 if (process.env.NODE_ENV !== 'development' || process.env.NODE_ENV !== 'test') {
   app.use(express.static(path.join(__dirname, 'dist')))
-  app.use((request, response) => {
-    if (!request.secure) {
-      response.redirect('https://' + request.headers.host + request.url)
-    }
-  })
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/dist/index.html'))
   })
