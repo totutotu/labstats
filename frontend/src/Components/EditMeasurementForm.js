@@ -58,8 +58,9 @@ const EditMeasurementForm = ({ handleChange, edit, initialValues, disabled }) =>
               value={upperBound}
               id="upperBound"
               variant="outlined"
+              type="number"
               label="Upper bound"
-              inputProps={{ max: '10', step: 0.01 }}
+              inputProps={{ step: 0.01 }}
               margin="normal"
               helperText="The upper bound of the optimal value"
               onChange={() => handleChange(event)}
@@ -73,7 +74,7 @@ const EditMeasurementForm = ({ handleChange, edit, initialValues, disabled }) =>
               variant="outlined"
               type="number"
               margin="normal"
-              inputProps={{ maxLength: 10 }}
+              inputProps={{ step: 0.01 }}
               label="Lower bound"
               helperText="The lower bound of the optimal value"
               onChange={() => handleChange(event)}
