@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography'
 import { getMeasurements, deleteMeasurement, editMeasurement } from '../redux/MeasurementReducer'
 import MeasurementTable from './MeasurementTable'
 
+import history from '../history'
+
 class Measurements extends React.Component {
   componentWillMount() {
     this.props.getMeasurements()
@@ -12,6 +14,12 @@ class Measurements extends React.Component {
 
   deleteMeasurement = id => {
     this.props.deleteMeasurement(id)
+  }
+
+  handleClick = id => {
+    console.log(id)
+    history.push(`/edit/${id}`)
+    this.forceUpdate()
   }
 
   render() {
@@ -22,6 +30,7 @@ class Measurements extends React.Component {
           <MeasurementTable
             data={measurements.data}
             deleteMeasurement={this.deleteMeasurement}
+            handleClick={this.handleClick}
           />
         </div>)
     } if (measurements.pending) {
