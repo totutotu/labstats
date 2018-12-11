@@ -19,7 +19,6 @@ class Measurements extends React.Component {
     if (measurements.data.length > 0) {
       return (
         <div>
-          <Typography variant="h2" align="center" style={{ marginTop: '30px' }}>All measurements</Typography>
           <MeasurementTable
             data={measurements.data}
             deleteMeasurement={this.deleteMeasurement}

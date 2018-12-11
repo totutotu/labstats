@@ -47,7 +47,12 @@ module.exports = (env, argv) => {
     },
     plugins: [htmlPlugin,
       cssPlugin,
-      ...additionalPlugins
+      ...additionalPlugins,
+      new webpack.DefinePlugin({
+        CONFIG: {
+          BASE_PATH: JSON.stringify('')
+        }
+      })
     ],
     entry: './src/index.js',
     output: {
