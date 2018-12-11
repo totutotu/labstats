@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 const port = process.env.PORT || 3000
 const routes = require('./routes')
 
+app.use('/api', routes)
 if (process.env.NODE_ENV !== 'development' || process.env.NODE_ENV !== 'test') {
   app.use(express.static(path.join(__dirname, 'dist')))
   app.use((request, response) => {
@@ -24,7 +25,6 @@ if (process.env.NODE_ENV !== 'development' || process.env.NODE_ENV !== 'test') {
   })
 }
 
-app.use('/api', routes)
 
 if (process.env.NODE_ENV !== 'test') app.listen(port, () => console.log('App listening on port ' + port))
 
