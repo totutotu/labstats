@@ -1,7 +1,7 @@
 import axios from 'axios'
 import history from '../history'
 
-const ROOT_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : process.env.API_URL
+const ROOT_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : 'https://labstats.herokuapp.com/api'
 
 const getMeasurementsAttempt = () => ({
   type: 'GET_MEASUREMENTS_ATTEMPT'
