@@ -28,9 +28,8 @@ module.exports = (env, argv) => {
           use: {
             loader: 'babel-loader'
           }
-        }
-        ,
-        { // Load CSS files
+        },
+        {
           test: /\.css$/,
           use: [
             MiniCssExtractPlugin.loader,
